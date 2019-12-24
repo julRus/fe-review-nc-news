@@ -1,0 +1,823 @@
+.App {
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: aliceblue;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(17, 156, 156, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(18, 211, 211, 0.6);
+  /* display: none; */
+}
+
+body {
+  color: #535353;
+  background-color: rgb(0, 0, 0, 0.9);
+  font-family: "Roboto", sans-serif;
+}
+
+.nav {
+  background-color: rgb(17, 156, 156, 0.6);
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: -16px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  transition: 0.2s ease-in-out;
+  visibility: visible;
+}
+
+#nav_link {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#nav_link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid greenyellow;
+  transition: 0.2s ease-in-out;
+
+  font-size: 24px;
+}
+#home {
+  display: none;
+}
+#topics {
+  display: none;
+}
+#social {
+  display: none;
+}
+#like {
+  display: none;
+}
+#user {
+  display: inline;
+}
+
+.dropdown {
+  position: fixed;
+  display: inline;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  z-index: 20;
+  right: 0;
+}
+
+.dropdown_title {
+  display: inline;
+  position: relative;
+  top: 5px;
+  right: 4px;
+}
+
+.dropdown > .dropdown_label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-color: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: rgb(207, 207, 207);
+  text-decoration: none;
+  display: inline-block;
+  float: right;
+}
+
+.content {
+  max-width: 100%;
+}
+
+.loadIndicator {
+  position: fixed;
+  color: #ccc;
+  top: 50%;
+  display: inline;
+  text-align: center;
+}
+
+.articles_title {
+  color: #ccc;
+  margin-top: 10%;
+  border-bottom: 1px solid rgb(17, 156, 156, 0.6);
+  float: left;
+  text-align: left;
+  width: 95%;
+}
+
+.article_card_container {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px;
+  width: 45%;
+  /* border: 1px solid pink; */
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
+  border-radius: 0%;
+  z-index: -1;
+  /* float: left; */
+}
+
+.article_card_container:hover {
+  -webkit-box-shadow: -17px 28px 38px -14px rgba(75, 75, 75, 0.52);
+  -moz-box-shadow: -17px 28px 38px -14px rgba(88, 88, 88, 0.52);
+  box-shadow: -17px 28px 38px -14px rgba(71, 71, 71, 0.52);
+  transform: scale(1.008);
+  transition: 0.2s ease-in-out;
+  z-index: -1;
+}
+
+.article_link {
+  text-decoration: none;
+  list-style: none;
+  color: grey;
+  font-size: 12px;
+  z-index: -1;
+}
+
+.article_card {
+  color: #a1a1a1;
+  max-width: 100%;
+  min-width: 90%;
+  background: rgba(0, 0, 0, 0.4);
+  position: relative;
+  top: 50px;
+  left: 4.8%;
+  padding: 60px 0;
+  width: 90.5%;
+  font-size: 8px;
+  transform: scale(1.26, 1);
+  z-index: 1;
+}
+
+.article_container {
+  display: inline-block;
+  border: 1px solid;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.article_card_topic_tag {
+  display: inline;
+  padding: 5px;
+  color: #000000;
+  position: relative;
+  font-size: 10px;
+  font-weight: 900;
+  float: left;
+  background-color: rgb(255, 0, 0, 0.4);
+}
+
+.article_card_title {
+  color: rgb(206, 206, 206);
+  font-size: 20px;
+  display: inline-block;
+  text-align: left;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.article_card_comment_tag {
+  position: relative;
+  font-size: 12px;
+  display: inline-block;
+  float: left;
+  margin: 15px;
+}
+
+.article_card_date_tag {
+  position: relative;
+  top: 87%;
+  color: #000000;
+  text-align: left;
+  background-color: rgb(255, 0, 0, 0.4);
+}
+
+.Topic {
+  position: fixed;
+  width: 50%;
+  margin-top: 5%;
+  display: inline-block;
+  overflow: hidden;
+  text-align: right;
+  right: 5%;
+
+  /* border: 1px solid white; */
+}
+
+#topic_articles_slug {
+  color: #ccc;
+  text-transform: uppercase;
+  font-size: 200%;
+}
+
+#topic_articles_desc {
+  max-width: 100%;
+  background-color: rgb(255, 0, 0, 0.4);
+  width: 100%;
+  color: #ccc;
+  /* text-align: left; */
+  position: relative;
+  z-index: 1;
+}
+
+.article {
+  max-width: 100%;
+  min-width: 100%;
+  color: #ccc;
+}
+
+.article_title {
+  margin-top: 5%;
+  /* color: rgb(255, 0, 0, 0.4); */
+  font-size: 200%;
+  text-align: left;
+  position: relative;
+  left: 2%;
+  width: 95%;
+  border-bottom: 1px solid rgb(17, 156, 156, 0.6);
+}
+
+[id="16"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://upload.wikimedia.org/wikipedia/commons/0/03/FC_Barcelona_1910.jpg);
+  background-size: cover;
+}
+
+[id="28"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://www.wildbackpacker.com/wp-content/uploads/strikingr/images/mountain_cooking-292x190.jpg);
+  background-size: cover;
+}
+
+[id="30"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://www.sheknows.com/wp-content/uploads/2018/08/mc0y0iglo5kkwajcegna.jpeg?w=695&h=391&crop=1);
+  background-size: cover;
+}
+
+[id="13"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://cdn.images.express.co.uk/img/dynamic/67/590x/910671_1.jpg);
+  background-size: cover;
+}
+
+[id="18"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://i.ytimg.com/vi/-o7DMXt-3P8/maxresdefault.jpg);
+  background-size: cover;
+}
+
+[id="6"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://cdn-media-1.freecodecamp.org/images/rMsi0io-O7iX5t5YqfljgTgYEC5mWTEJHXcz);
+  background-size: cover;
+}
+
+[id="4"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://www.robinwieruch.de/static/2f8658dc8399e0cd334b8a76fe2b5dcd/2b1a3/banner.jpg);
+  background-size: cover;
+}
+
+[id="11"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://miro.medium.com/max/3434/1*jfwTY39D9tuBlvc36jjrTA.png);
+  background-size: cover;
+}
+
+[id="31"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://static01.nyt.com/images/2019/02/19/dining/kc-smoky-paella-copy/merlin_150673158_d668aacc-20a3-455b-8138-cadd0f8aba5c-articleLarge.jpg?quality=75&auto=webp&disable=upscale);
+  background-size: cover;
+}
+
+[id="33"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(http://static1.squarespace.com/static/5c18cc70e17ba380e695f201/5c224cbd8a922d984e282099/5c601e0eeef1a13325d3242a/1563441106563/Dutch%2Bbrand%2BVivera%2Badds%2Bseafood-substitute%2BFish%2BBurger%2Bto%2Bits%2Brange%2B3.jpg?format=1500w);
+  background-size: cover;
+}
+
+[id="35"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://cdn.crownmediadev.com/3f/ce/e38c2ff544eda9d24e594ead0ae3/home-family-dolly-partons-stone-soup.jpg);
+  background-size: cover;
+}
+
+[id="23"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://i2-prod.chroniclelive.co.uk/incoming/article12797757.ece/ALTERNATES/s615/IFP_BEM_230314footy_10JPG.jpg);
+  background-size: cover;
+}
+
+[id="27"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://hips.hearstapps.com/clv.h-cdn.co/assets/15/42/thanksgiving-drinks-5-1115.jpg);
+  background-size: cover;
+}
+
+[id="19"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://i.imgur.com/VY8W8lm.png);
+  background-size: cover;
+}
+
+[id="3"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://miro.medium.com/max/1200/1*y6C4nSvy2Woe0m7bWEn4BA.png);
+  background-size: cover;
+}
+
+[id="2"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://www.theinquirer.net/w-images/be876f46-b4ec-46bb-a986-0d4f4d42c8b6/2/robot-580x358.jpg);
+  background-size: cover;
+}
+
+[id="12"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://miro.medium.com/max/1023/1*d7fptjFMYTC9MZXDEUC38g.png);
+  background-size: cover;
+}
+
+[id="34"] {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(48, 61, 133, 0.52),
+      rgba(0, 0, 0, 0.73)
+    ),
+    url(https://pbs.twimg.com/media/C93HyVgXcAEGJor.jpg);
+  background-size: cover;
+}
+
+.topics {
+  margin-top: 4.5%;
+  max-height: 20%;
+  max-width: 100%;
+}
+
+.topic_link {
+  list-style: none;
+  text-decoration: none;
+  color: #ccc;
+  max-height: 20%;
+  max-width: 100%;
+  text-transform: uppercase;
+  margin: 0 3px;
+}
+
+.topic_card {
+  display: inline-block;
+  height: 100%;
+  width: 20%;
+  padding: 230px 120px;
+  overflow: hidden;
+}
+
+.topic_tag {
+  background-color: rgb(0, 0, 0, 0.5);
+  /* border: 1px solid rgba(255, 0, 0, 0.4); */
+  position: relative;
+  top: 50px;
+  padding: 180px 0;
+}
+
+#coding {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.52),
+      rgba(71, 64, 64, 0.73)
+    ),
+    url(https://img.freepik.com/free-photo/programming-code-abstract-technology-background-software-developer-computer-script_34663-31.jpg?size=626&ext=jpg);
+  background-size: cover;
+}
+
+#football {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.52),
+      rgba(71, 64, 64, 0.73)
+    ),
+    url(https://i.pinimg.com/originals/fd/ed/8f/fded8fa3bd6aa4f67acc192a6f82edb9.jpg);
+  background-size: cover;
+}
+
+#cooking {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.52),
+      rgba(71, 64, 64, 0.73)
+    ),
+    url(https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/12/2018/03/food-photography-moments-of-drama.jpg);
+  background-size: cover;
+}
+
+#topic_slug {
+  margin: 0;
+  font-size: 250%;
+}
+
+#topic_dec {
+  margin: 0;
+  font-size: 50%;
+  background-color: rgb(255, 0, 0, 0.5);
+}
+
+.article_header {
+  z-index: 40;
+}
+
+.article_header {
+  max-width: 100%;
+  display: inline-block;
+  width: 90%;
+  background-color: rgb(255, 0, 0, 0.4);
+  text-align: left;
+  margin: 0 5% 5% 5%;
+}
+
+.article_header p {
+  display: inline-block;
+  margin: 0 3%;
+}
+
+#voter {
+  position: relative;
+  float: right;
+  right: 6%;
+}
+
+.article_votes_button {
+  position: relative;
+  background-color: rgb(17, 156, 156, 0.8);
+  border: 0.5px solid rgb(255, 255, 255);
+  float: right;
+  right: 5%;
+}
+
+.article_body {
+  max-width: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+  display: inline-block;
+  margin: 0 10%;
+  text-align: center;
+  font-size: 120%;
+  padding: 5%;
+  position: relative;
+  top: -80px;
+  z-index: -1;
+}
+
+.comments_title {
+  color: #ccc;
+  border-bottom: 1px solid rgb(17, 156, 156, 0.6);
+  float: left;
+  text-align: left;
+  position: relative;
+  left: 5%;
+  width: 90%;
+  top: 0px;
+  /* text-transform: uppercase;
+  font-size: 120%; */
+}
+
+.post_comment_title {
+  color: #ccc;
+  border-bottom: 1px solid rgb(17, 156, 156, 0.6);
+  float: left;
+  text-align: left;
+  position: relative;
+  width: 90%;
+  /* top: -60px; */
+}
+
+.post_comment {
+  position: relative;
+  top: 0px;
+  left: 70%;
+}
+
+.post_comment_box {
+  border: 1px solid rgb(17, 156, 156, 0.6);
+  background-color: transparent;
+  color: #ccc;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  display: inline;
+}
+
+.post_comment_button {
+  background: transparent;
+  border: 1px solid rgb(17, 156, 156, 0.6);
+  color: #ccc;
+}
+
+.post_comment_button:hover {
+  background: rgb(17, 156, 156, 0.6);
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+
+.comment_form {
+  margin-top: 5%;
+  display: inline-block;
+  position: relative;
+  right: 7%;
+  top: -60px;
+
+  /* background: green; */
+}
+
+.comments {
+  max-width: 100%;
+  width: 80%;
+  margin-left: 0;
+  /* border: 2px solid white; */
+  display: inline-block;
+  list-style: none;
+}
+
+.comment {
+  /* background: rgba(139, 255, 255, 0.4); */
+  border: 1px solid rgb(17, 156, 156, 0.6);
+  background-color: rgb(240, 248, 255, 0.8);
+  color: #000000;
+  max-width: 100%;
+  width: 100%;
+  margin: 1% 0;
+}
+
+.comment_author {
+  color: black;
+  text-align: left;
+  float: left;
+  position: relative;
+  display: inline;
+  left: 2%;
+}
+
+.comment_votes {
+  display: inline;
+  float: right;
+  position: relative;
+}
+
+.comment_Delete_Button {
+  background: none;
+  border: 1px solid rgb(17, 156, 156, 0.6);
+  color: aliceblue;
+}
+
+.comment_Delete_Button:hover {
+  background: none;
+  border: 1px solid aliceblue;
+  background-color: rgb(17, 156, 156, 0.6);
+  color: aliceblue;
+}
+
+.logsignin {
+  position: relative;
+  padding: 15%;
+  top: 0px;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 450px) {
+  body {
+    background-color: rgb(0, 0, 0, 0.9);
+  }
+
+  .articles_title {
+    margin-top: 25%;
+    color: #ccc;
+    width: 100%;
+  }
+
+  .article_card_container {
+    max-width: 100%;
+    position: relative;
+    padding: 50px;
+    width: 100%;
+    right: 7%;
+    box-sizing: border-box;
+    margin: 0.7rem 0.25em;
+    border-radius: 2%;
+    background-size: cover;
+  }
+
+  .article_card {
+    color: #a1a1a1;
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    /* border: 1px solid greenyellow; */
+    position: relative;
+    top: 25px;
+    right: 0%;
+    padding: 0 0;
+    transform: scale(1.47, 1.2);
+    width: 100%;
+    font-size: 8px;
+    border-radius: 2%;
+  }
+
+  .topics {
+    margin-top: 15%;
+    /* width: 50%; */
+  }
+
+  .topic_card {
+    padding: 0 150px;
+    overflow: hidden;
+    margin: 1.5% 0;
+  }
+
+  .topic_tag {
+    background-color: rgb(0, 0, 0, 0.5);
+    /* border: 1px solid rgba(255, 0, 0, 0.4); */
+    position: relative;
+    padding: 70px 190%;
+    right: 190%;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #topic_slug {
+    position: relative;
+    right: 60%;
+    text-align: center;
+  }
+
+  #topic_dec {
+    position: relative;
+    right: 60%;
+  }
+
+  .article_header {
+    margin-bottom: 20%;
+  }
+
+  .article_title {
+    margin-top: 20%;
+  }
+
+  .post_comment {
+    position: relative;
+    left: 0;
+  }
+
+  .post_comment_box {
+    padding: 0 0 0 46%;
+  }
+
+  .post_comment_title {
+    width: 24%;
+    position: relative;
+    top: 10px;
+  }
+
+  .dropdown {
+    position: fixed;
+    top: 10%;
+    right: 40px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1100px) {
+  .article_card_container {
+    width: 55%;
+  }
+
+  .article_card {
+    top: 32px;
+    right: 0%;
+    transform: scale(1.335, 1.2);
+  }
+
+  .topics {
+    margin-top: 10%;
+    /* width: 50%; */
+  }
+
+  .topic_card {
+    padding: 0 39%;
+    overflow: hidden;
+    margin: 1.5% 0;
+  }
+
+  .topic_tag {
+    background-color: rgb(0, 0, 0, 0.5);
+    /* border: 1px solid rgba(255, 0, 0, 0.4); */
+    position: relative;
+    padding: 110px 210%;
+    right: 210%;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #topic_slug {
+    position: relative;
+    right: 60%;
+    text-align: center;
+  }
+
+  #topic_dec {
+    position: relative;
+    right: 60%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  #user {
+    display: none;
+  }
+}
