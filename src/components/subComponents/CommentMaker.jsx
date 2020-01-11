@@ -1,5 +1,4 @@
 import React from "react";
-// import Header from "../Header";
 import * as api from "../../api";
 
 export default class CommentMaker extends React.Component {
@@ -8,11 +7,9 @@ export default class CommentMaker extends React.Component {
     hasCommented: true
   };
   render() {
+    const { comment } = this.state;
     return (
       <>
-        {/* <header>
-          <Header user={this.props.user} />
-        </header> */}
         <main>
           <form
             onSubmit={event => this.createComment(event)}
@@ -27,7 +24,7 @@ export default class CommentMaker extends React.Component {
                 placeholder="Comment Content"
                 required
                 className="post_comment_box"
-                value={this.state.comment.body}
+                value={comment.body}
                 onChange={event => this.handleChange(event)}
               ></textarea>
             </label>{" "}
@@ -46,24 +43,14 @@ export default class CommentMaker extends React.Component {
   }
 
   createComment(event) {
+    const { comment } = this.state;
     event.preventDefault();
     this.setState({
       comment: { username: null, body: "" },
       hasCommented: true
     });
-    api.postComment(this.state.comment, this.props.article_id).then(comment => {
+    api.postComment(comment, this.props.article_id).then(comment => {
       this.props.addComment(comment.comment);
     });
   }
-
-  // renderComment(comment) {
-  //   this.setState(currentState => {
-  //     const newState = (currentState = {
-  //       ...this.state,
-  //       comments: [...this.props.comments]
-  //     });
-  //     return newState;
-  //   });
-  //   console.log(this.state);
-  // }
 }

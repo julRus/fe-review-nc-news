@@ -2,28 +2,17 @@ import React from "react";
 import { Link } from "@reach/router";
 
 const ArticleCard = props => {
+  const { id, date, topic, comments, title } = props;
   return (
     <>
-      <Link to={`/articles/${props.id}`} className="article_link">
-        <div className="article_card_container" id={props.id.toString()}>
+      <Link to={`/articles/${id}`} className="article_link">
+        <div className="article_card_container" id={id.toString()}>
           <div className="article_container">
             <li className="article_card">
-              {/* <img
-            src="https://cdn2.vectorstock.com/i/1000x1000/42/71/temporary-film-job-text-background-word-cloud-vector-16054271.jpg"
-            alt="article"
-            className="article_card_img"
-          /> */}
-              <p className="article_card_date_tag">. {props.date}</p>
-              <p className="article_card_topic_tag">{props.topic}</p>
-              <p className="article_card_comment_tag">
-                {props.comments} comments
-              </p>
-              <p className="article_card_title"> {props.title}</p>
-              {/* <img
-              src="https://seeklogo.net/wp-content/uploads/2017/04/abc-news-logo-01.png"
-              alt="logo"
-              className="logo_card"
-            /> */}
+              <p className="article_card_date_tag">. {date}</p>
+              <p className="article_card_topic_tag">{topic}</p>
+              <p className="article_card_comment_tag">{comments} comments</p>
+              <p className="article_card_title"> {title}</p>
             </li>
           </div>
         </div>

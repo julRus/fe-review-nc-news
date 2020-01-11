@@ -3,8 +3,6 @@ import axios from "axios";
 const baseURL = "https://nc-news-julia.herokuapp.com/api";
 
 export const getArticles = (sort_term, topicName) => {
-  // const queryOne = topicName ? `?topic=${topicName}` : ``;
-  // const queryTwo = sort_term ? `?sort_by=${sort_term}` : ``;
   return axios
     .get(`${baseURL}/articles`, {
       params: { topic: topicName, sort_by: sort_term }
@@ -37,7 +35,6 @@ export const patchArticleVotes = (id, amnt, endpoint, commentId) => {
 };
 
 export const postComment = (comment, id) => {
-  // console.log(comment);
   return axios
     .post(`${baseURL}/articles/${id}/comments`, {
       username: comment.username,

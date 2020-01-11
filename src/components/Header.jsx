@@ -5,23 +5,10 @@ const Header = ({ user }) => {
   if (user.password) {
     return (
       <>
-        {/* <section className="sub_header">
-          <img
-            src="https://seeklogo.net/wp-content/uploads/2017/04/abc-news-logo-01.png"
-            alt="logo"
-            className="logo"
-          /> */}
-        {/* <h2 className="sub_heading">BRINGING YOU THE BEST OF FAKE NEWS!</h2> */}
-        {/* </section> */}
         <nav className="nav">
           <ul className="nav_content">
             <Link to="/" className="nav_link_home" id="nav_link">
-              <i
-                className="fa fa-home"
-                // onMouseOver={event => {
-                //   chbg(event);
-                // }}
-              >
+              <i className="fa fa-home">
                 <p id="home">Home</p>
               </i>
             </Link>
@@ -72,25 +59,5 @@ const Header = ({ user }) => {
     </div>
   );
 };
-
-// const styleIt = event => {
-//   const className = event.target.children[0].className;
-//   return (
-//     <style
-//       p={{
-//         __html: `
-//       .styled { display: inline }
-//     `
-//       }}
-//     />
-//   );
-// };
-
-// const chbg = event => {
-//   const className = event.target.children[0].className;
-//   {
-//     document.getElementByClassName(className).style.display = "inline";
-//   }
-// };
 
 export default Header;

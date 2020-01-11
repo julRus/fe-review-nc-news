@@ -4,9 +4,10 @@ import * as api from "../../api";
 export default class VotesIncrementer extends React.Component {
   state = {
     hasVotedUp: false,
-    txt: "VOTE 👍"
+    text: "VOTE 👍"
   };
   render() {
+    const { text } = this.state;
     return (
       <>
         <button
@@ -14,7 +15,7 @@ export default class VotesIncrementer extends React.Component {
           className="article_votes_button"
         >
           <span role="img" aria-label="thumbsUp">
-            {this.state.txt}
+            {text}
           </span>
         </button>
       </>
@@ -22,36 +23,33 @@ export default class VotesIncrementer extends React.Component {
   }
 
   incrementVotes(prop) {
-    console.log(prop.commentId);
-    if (this.state.hasVotedUp === false) {
+    const { hasVotedUp } = this.state;
+    if (hasVotedUp === false) {
       if (prop.name === "articleVoter") {
         prop.displayVote(prop.commentId, 1, "voteChangeArticle");
-        api.patchArticleVotes(prop.id, 1).then(article => {
-          // need to set the state in Article.jsx to the returned article and display the result
-          this.setState({ hasVotedUp: true, txt: "UNVOTE 👎" });
+        api.patchArticleVotes(prop.id, 1).then(() => {
+          this.setState({ hasVotedUp: true, text: "UNVOTE 👎" });
         });
       } else if (prop.name === "comments") {
         prop.displayVote(prop.commentId, 1, "voteChangeComment");
         api
           .patchArticleVotes(prop.id, 1, prop.name, prop.commentId)
-          .then(article => {
-            // need to set the state in Article.jsx to the returned article and display the result
-            this.setState({ hasVotedUp: true, txt: "UNVOTE 👎" });
+          .then(() => {
+            this.setState({ hasVotedUp: true, text: "UNVOTE 👎" });
           });
       }
     } else {
       if (prop.name === "articleVoter") {
         prop.displayVote(prop.commentId, 0, "voteChangeArticle");
-        api.patchArticleVotes(prop.id, -1).then(article => {
-          this.setState({ hasVotedUp: false, txt: "VOTE 👍" });
+        api.patchArticleVotes(prop.id, -1).then(() => {
+          this.setState({ hasVotedUp: false, text: "VOTE 👍" });
         });
       } else if (prop.name === "comments") {
         prop.displayVote(prop.commentId, -1, "voteChangeComment");
         api
           .patchArticleVotes(prop.id, -1, prop.name, prop.commentId)
-          .then(article => {
-            // need to set the state in Article.jsx to the returned article and display the result
-            this.setState({ hasVotedUp: false, txt: "VOTE 👍" });
+          .then(() => {
+            this.setState({ hasVotedUp: false, text: "VOTE 👍" });
           });
       }
     }

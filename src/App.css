@@ -130,12 +130,10 @@ body {
   flex-wrap: wrap;
   padding: 50px;
   width: 45%;
-  /* border: 1px solid pink; */
   box-sizing: border-box;
   margin: 1rem 0.25em;
   border-radius: 0%;
   z-index: -1;
-  /* float: left; */
 }
 
 .article_card_container:hover {
@@ -222,8 +220,6 @@ body {
   overflow: hidden;
   text-align: right;
   right: 5%;
-
-  /* border: 1px solid white; */
 }
 
 #topic_articles_slug {
@@ -237,7 +233,6 @@ body {
   background-color: rgb(255, 0, 0, 0.4);
   width: 100%;
   color: #ccc;
-  /* text-align: left; */
   position: relative;
   z-index: 1;
 }
@@ -250,7 +245,6 @@ body {
 
 .article_title {
   margin-top: 5%;
-  /* color: rgb(255, 0, 0, 0.4); */
   font-size: 200%;
   text-align: left;
   position: relative;
@@ -465,7 +459,6 @@ body {
 
 .topic_tag {
   background-color: rgb(0, 0, 0, 0.5);
-  /* border: 1px solid rgba(255, 0, 0, 0.4); */
   position: relative;
   top: 50px;
   padding: 180px 0;
@@ -566,8 +559,6 @@ body {
   left: 5%;
   width: 90%;
   top: 0px;
-  /* text-transform: uppercase;
-  font-size: 120%; */
 }
 
 .post_comment_title {
@@ -577,7 +568,6 @@ body {
   text-align: left;
   position: relative;
   width: 90%;
-  /* top: -60px; */
 }
 
 .post_comment {
@@ -614,21 +604,17 @@ body {
   position: relative;
   right: 7%;
   top: -60px;
-
-  /* background: green; */
 }
 
 .comments {
   max-width: 100%;
   width: 80%;
   margin-left: 0;
-  /* border: 2px solid white; */
   display: inline-block;
   list-style: none;
 }
 
 .comment {
-  /* background: rgba(139, 255, 255, 0.4); */
   border: 1px solid rgb(17, 156, 156, 0.6);
   background-color: rgb(240, 248, 255, 0.8);
   color: #000000;
@@ -699,7 +685,6 @@ body {
     color: #a1a1a1;
     max-width: 100%;
     background: rgba(0, 0, 0, 0.4);
-    /* border: 1px solid greenyellow; */
     position: relative;
     top: 25px;
     right: 0%;
@@ -712,7 +697,6 @@ body {
 
   .topics {
     margin-top: 15%;
-    /* width: 50%; */
   }
 
   .topic_card {
@@ -723,7 +707,6 @@ body {
 
   .topic_tag {
     background-color: rgb(0, 0, 0, 0.5);
-    /* border: 1px solid rgba(255, 0, 0, 0.4); */
     position: relative;
     padding: 70px 190%;
     right: 190%;
@@ -785,7 +768,6 @@ body {
 
   .topics {
     margin-top: 10%;
-    /* width: 50%; */
   }
 
   .topic_card {
@@ -796,7 +778,6 @@ body {
 
   .topic_tag {
     background-color: rgb(0, 0, 0, 0.5);
-    /* border: 1px solid rgba(255, 0, 0, 0.4); */
     position: relative;
     padding: 110px 210%;
     right: 210%;

@@ -3,11 +3,9 @@ import SignUp from "./SignUp";
 
 export default class LogIn extends React.Component {
   render() {
+    const { user } = this.props;
     return (
       <>
-        {/* <header>
-          <Header user={this.props.user} />
-        </header> */}
         <main className="logsignin">
           <form className="login">
             LogIn <br />
@@ -23,7 +21,7 @@ export default class LogIn extends React.Component {
             <br />
             <button>Log In</button>
           </form>
-          <SignUp user={this.props.user} className="signup" />
+          <SignUp user={user} className="signup" />
         </main>
       </>
     );

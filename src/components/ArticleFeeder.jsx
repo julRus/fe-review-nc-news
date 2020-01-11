@@ -11,14 +11,9 @@ export default class ArticleFeeder extends React.Component {
     err: null
   };
   render() {
-    // const {
-    //   user: { username }
-    // } = this.props;
-    // console.log(username);
-    const { articles } = this.state;
-    if (this.state.isLoading)
-      return <p className="loadIndicator">Loading...</p>;
-    if (this.state.err !== null)
+    const { articles, isLoading, err } = this.state;
+    if (isLoading) return <p className="loadIndicator">Loading...</p>;
+    if (err !== null)
       return (
         <>
           <h1>this.state.err.status</h1>
@@ -61,12 +56,6 @@ export default class ArticleFeeder extends React.Component {
     this.fetchArticles(null, this.props.slug);
   }
 
-  // componentDidUpdate(prevState) {
-  //   if (prevState !== this.state) {
-  //     this.filterArticlesByTopic(this.props.slug);
-  //   }
-  // }
-
   fetchArticles = (sort_term, topic) => {
     api
       .getArticles(sort_term, topic)
@@ -80,25 +69,4 @@ export default class ArticleFeeder extends React.Component {
         });
       });
   };
-
-  // filterArticlesByTopic(slug) {
-  //   if (slug) {
-  //     this.setState(currentState => {
-  //       const newState = {
-  //         ...currentState
-  //       };
-  //       console.log(newState);
-
-  //       const topics = newState.articles.filter(article => {
-  //         return article.topic === slug;
-  //       });
-
-  //       const newNewState = { ...currentState, articles: [...topics] };
-
-  //       return newNewState;
-  //     });
-  //   }
-  // }
-
-  // this.filterArticlesByTopic(this.props.slug)
 }

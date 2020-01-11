@@ -14,16 +14,23 @@ export default class Article extends React.Component {
     isLoading: true,
     err: null,
     voteChangeArticle: 0,
-    voteChangeComment: 0,
-    hasCommented: false
+    voteChangeComment: 0
   };
 
   render() {
     if (this.state.isLoading)
       return <p className="loadIndicator">Loading...</p>;
     if (this.state.err !== null) return <ErrorShower err={this.state.err} />;
-    const { title, created_at, author, votes, body } = this.state.article;
-    const { comments } = this.state;
+    const {
+      title,
+      created_at,
+      author,
+      votes,
+      body,
+      article_id
+    } = this.state.article;
+    const { comments, voteChangeArticle } = this.state;
+    const { user } = this.props;
     return (
       <>
         <header>
@@ -35,8 +42,8 @@ export default class Article extends React.Component {
             <div>
               <h4 className="article_title">{title}</h4>
               <VotesIncrementer
-                articleVotes={this.state.article.votes}
-                id={this.state.article.article_id}
+                articleVotes={votes}
+                id={article_id}
                 displayVote={this.handleVoteChange}
                 name="articleVoter"
               />
@@ -47,7 +54,7 @@ export default class Article extends React.Component {
               <p className="article_author">{author}</p>
               <p className="article_date">{created_at}</p>
               <p className="article_votes" id="voter">
-                {(votes + this.state.voteChangeArticle).toString()}
+                {(votes + voteChangeArticle).toString()}
               </p>
             </div>
             <p className="article_body">{body}</p>
@@ -56,9 +63,9 @@ export default class Article extends React.Component {
           <div>
             <section className="comment_form">
               <CommentMaker
-                user={this.props.user}
-                article_id={this.state.article.article_id}
-                comments={this.state.comments}
+                user={user}
+                article_id={article_id}
+                comments={comments}
                 addComment={this.addComment}
               />
             </section>
@@ -83,9 +90,7 @@ export default class Article extends React.Component {
                     <button
                       style={{
                         display:
-                          comment.author === this.props.user.username
-                            ? "block"
-                            : "none"
+                          comment.author === user.username ? "block" : "none"
                       }}
                       onClick={() =>
                         this.deletionChecker(comment.author, comment.comment_id)
@@ -105,8 +110,9 @@ export default class Article extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchArticle(this.props.article_id);
-    this.fetchComments(this.props.article_id);
+    const { article_id } = this.props;
+    this.fetchArticle(article_id);
+    this.fetchComments(article_id);
   }
 
   fetchArticle(id) {
@@ -128,6 +134,7 @@ export default class Article extends React.Component {
   }
 
   fetchComments(id) {
+    const { user } = this.props;
     api
       .getArticleComments(id)
       .then(comments => {
@@ -138,7 +145,7 @@ export default class Article extends React.Component {
           err: {
             status: 400,
             msg: `cannot get article of id ${id}, does not exist`,
-            user: this.props.user
+            user: user
           },
           isLoading: false
         });
@@ -166,7 +173,6 @@ export default class Article extends React.Component {
   };
 
   deletionChecker(author, id) {
-    console.log(id);
     if (author === this.props.user.username) {
       const willDelete = window.confirm(
         "Are you sure you want to delete this comment?"
@@ -182,8 +188,7 @@ export default class Article extends React.Component {
 
   deletedComment(id) {
     this.setState(currentState => {
-      // const newState = { ...this.sate, comments: this.state.comments };
-      const newState = this.state.comments.filter(comment => {
+      const newState = currentState.comments.filter(comment => {
         return id !== comment.comment_id;
       });
       return { comments: newState };
@@ -192,7 +197,7 @@ export default class Article extends React.Component {
 
   addComment = comment => {
     this.setState(currentState => {
-      const newState = { ...this.sate, comments: this.state.comments };
+      const newState = { ...currentState, comments: currentState.comments };
       newState.comments.unshift(comment);
       return newState;
     });

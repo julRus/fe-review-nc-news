@@ -9,10 +9,11 @@ export default class TopicFeeder extends React.Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <>
         <header>
-          <Header user={this.props.user} />
+          <Header user={user} />
         </header>
         <main className="topics">
           {this.state.topics.map(topic => {
